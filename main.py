@@ -1,11 +1,16 @@
 import telebot
 from telebot import types
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+import ast
 
-TOKEN = '7475404155:AAEg5k0LbjEcQoQDwSH8BtijWCMDC1ep8bY'
+load_dotenv()
+
+TOKEN = os.getenv("BOT_TOKEN")
+ADMIN_IDS = ast.literal_eval(os.getenv("ADMIN_IDS"))
+
 bot = telebot.TeleBot(TOKEN)
-
-ADMIN_IDS = [2090153918]
 
 START_HOUR = 9
 END_HOUR = 22
@@ -156,7 +161,7 @@ def handle_user_id(message):
 def handle_image(message):
     username = message.from_user.username
     full_name = f"{message.from_user.first_name or ''} {message.from_user.last_name or ''}".strip() or "No name"
-    user_link = f"https://t.me/{username}" if username else f"{full_name}"
+    user_link = f"@{username}" if username else f"{full_name}"
 
     user_provided_id = user_data.get(message.chat.id, {}).get('user_id', "No user-provided ID")
     language = user_data.get(message.chat.id, {}).get('language', 'uz')

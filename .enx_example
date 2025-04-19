@@ -1,0 +1,4 @@
+# CREATE YOUR OWN .env FILE USING THIS EXAMPLE:
+
+BOT_TOKEN=your_bot_id
+ADMIN_IDS=[1111111111, 2222222222] # replace this example with your own ids
